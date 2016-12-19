@@ -1,0 +1,23 @@
+# {{group}}
+
+list(APPEND sources
+{{#sourcefiles}}
+    "{{name}}.cpp"
+    "{{name}}.h"
+{{/sourcefiles}}
+)
+source_group("" FILES ${sources})
+
+add_library({{group}} STATIC ${sources})
+
+target_include_directories({{group}} PUBLIC
+{{#packages}}
+    {{name}}
+{{/packages}}
+)
+
+target_link_libraries({{group}} PUBLIC
+{{#dependencies}}
+    {{name}}
+{{/dependencies}}
+)
